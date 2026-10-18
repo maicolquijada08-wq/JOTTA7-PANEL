@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOTTA7 PANEL - Control Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .panel-container {
+            background-color: #1f2833;
+            border: 2px solid #66fcf1;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            color: #66fcf1;
+            font-size: 24px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p.subtitle {
+            color: #c5c6c7;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .option-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0b0c10;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .option-group span {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 45px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #45a29e;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #66fcf1;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(21px);
+        }
+
+        .btn-action {
+            width: 100%;
+            padding: 12px;
+            background-color: #66fcf1;
+            color: #0b0c10;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-action:hover {
+            background-color: #45a29e;
+            color: #ffffff;
+        }
+
+        .status {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #45a29e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel-container">
+        <h1>JOTTA7 PANEL</h1>
+        <p class="subtitle">FREE FIRE CONFIGURATOR</p>
+
+        <div class="option-group">
+            <span>Optimizar Sensibilidad</span>
+            <label class="switch">
+                <input type="checkbox" id="sensi">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="option-group">
+            <span>Reducir Lag / Ping</span>
+            <label class="switch">
+                <input type="checkbox" id="ping">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="option-group">
+            <span>FPS Ultra (60/90 FPS)</span>
+            <label class="switch">
+                <input type="checkbox" id="fps">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <button class="btn-action" onclick="inyectar()">ACTIVAR PANEL</button>
+
+        <div class="status" id="status-text">Estado: En espera...</div>
+    </div>
+
+    <script>
+        function inyectar() {
+            const status = document.getElementById('status-text');
+            status.style.color = '#66fcf1';
+            status.innerText = 'Cargando configuraciones...';
+            
+            setTimeout(() => {
+                status.innerText = '¡Configuración aplicada con éxito!';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
